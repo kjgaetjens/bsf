@@ -1,0 +1,146 @@
+body{
+    
+    padding: 50px;
+}
+.container{
+    display:flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    height: 70vh;
+    padding: 30px;
+    clip-path: polygon(0 1%, 100% 1%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+    background-color: gray;
+}
+/*******JOYSTICK*******/
+#joystick-container{
+    display: flex;
+    flex-direction: column;
+}
+#top, #center, #bottom{
+    display:flex;
+    font-size:2em;
+}
+#top, #center, #bottom{
+    justify-content:center;
+}
+
+#center{
+    align-items:center;
+}
+
+.arrow{
+    font-size:2em;
+    font-weight: 800;
+}
+#joystick{
+    width: 150px;
+    height:150px;
+    border-radius:50%;
+    background-color:black;
+}
+
+#NE-Arrow{
+    transform: rotate(90deg) translate(18px,-25px);
+}
+#SW-Arrow{
+    transform: rotate(90deg) translate(-18px,25px)
+}
+#NW-Arrow{
+    transform:translate(-25px, 18px)
+}
+
+#SE-Arrow{
+    transform:translate(25px, -18px)
+}
+
+
+
+
+/***Buttons***/
+.button-label{
+    display:flex;
+    flex-direction:row;
+    width:400px;
+    height:100px;
+    background-color:black;
+    margin-bottom: 18%;
+    justify-content: center;
+}
+
+.top-btns, .bottom-btns{
+    margin: 0 10px;
+}
+
+
+
+.red-btn{
+    background-color:red;
+    border-radius: 100%;
+    width: 100px;
+    height:100px;
+    box-shadow: 4px 2px #d02222;
+    
+}
+
+.red-btn::after{
+    content: '';
+    display:flex;
+    background-color: red;
+    box-shadow: 5px 5px #d02222;
+    border: 1px solid #d02222;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
+
+.blue-btn{
+    background-color:blue;
+    border-radius: 100%;
+    width: 100px;
+    height:100px;
+    box-shadow: 4px 2px #0e0eb3;
+    
+}
+
+.blue-btn::after{
+    content: '';
+    display:flex;
+    background-color: blue;
+    box-shadow: 5px 5px #0e0eb3;
+    border: 1px solid #0e0eb3;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+
+
+.white-btn{
+    background-color:white;
+    border-radius: 100%;
+    width: 100px;
+    height:100px;
+    box-shadow: 4px 2px #999
+}
+
+.white-btn::after{
+    content: '';
+    display:flex;
+    background-color: white;
+    box-shadow: 5px 5px #999;
+    border: 1px solid #999;
+    margin: 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+}
+ h3{
+     color:white;
+     text-align:center;
+ }
+
+
+
+ /****character****/
