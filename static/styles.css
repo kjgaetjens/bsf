@@ -1,5 +1,5 @@
 body{
-    
+    background-color: black;
     padding: 50px;
 }
 .container{
@@ -144,3 +144,10 @@ body{
 
 
  /****character****/
+ #character-container{
+     display:flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     width: 40%;
+     margin: 0 auto;
+ }
