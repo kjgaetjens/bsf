@@ -144,10 +144,43 @@ body{
 
 
  /****character****/
+ 
+ #character-container, .character, .selection{
+    display:flex;
+ }
  #character-container{
-     display:flex;
      flex-wrap: wrap;
      justify-content: center;
-     width: 40%;
+     width: 50%;
      margin: 0 auto;
+ }
+
+.character{
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0 10px 30px 10px;
+}
+.character > img{
+    margin-bottom:10px;
+}
+button:hover{
+    transform:scale(1.1);
+    transition: .7s ease-out;
+}
+
+
+.selection{
+    justify-content: center;
+    
+}
+ button{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    outline: none;
+    padding: 10px;
+    background-color: transparent;
+    color: white;
+    border: none;
  }
