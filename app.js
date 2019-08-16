@@ -95,6 +95,60 @@ app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
 })
 
 
+app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
+let buttonTypeParam = req.params.buttontype
+   let controlType = ''
+   let direction = ''
+   let action = ''
+   if((buttonTypeParam).includes('joystick')) {
+       controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
+       direction = buttonTypeParam.substring(buttonTypeParam.indexOf('-')+1,buttonTypeParam.length)
+       if (direction == 'up') {
+            action='jump'
+       } else if (direction == 'down') {
+            action='crouch'
+       } else if (direction =='down-right') {
+            action='offensive crouch'
+       } else if (direction =='right') {
+            action='forward'
+       } else if (direction =='up-right') {
+            action='forward jump'
+       } else if (direction =='up-left') {
+            action='back flip'
+       } else if (direction == 'left') {
+            action='back defense'
+       } else if (direction == 'down-left') {
+            action='defensive crouch'
+       }
+   } else {
+       controlType = buttonTypeParam
+   }
+   let characterName = req.params.charactername
+   if(controlType == 'joystick') {
+    let resultPromise = session.run(
+       "MATCH (a:Action)-->(c:Combo), (p:Character)-->(a) WHERE p.name=$name AND a.name=$action RETURN a, c",
+       {name: characterName, action:action}
+      )
+    resultPromise.then(result => {
+        session.close();
+        let actions = []
+        const singleRecord = result.records[0];
+        const node1 = singleRecord.get(0);
+        const action = node1.properties.name
+        actions.push(action)
+        const otherRecords = result.records;
+        if (otherRecords.length > 1) {
+            otherRecords.forEach(record => {
+                const node2 = record.get(1)
+                const combo = node2.properties.name
+                actions.push(combo)
+            })
+        }
+        driver.close();
+        res.render('results', {actions: actions})
+ }).catch(error=>console.log(error))
+    }
+ })
 
 app.listen(3000, ()=>{
     console.log('server has started')
