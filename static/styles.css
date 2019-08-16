@@ -191,5 +191,11 @@ a:hover{
 
  #results-container{
      display:flex;
+     flex-direction: column;
+     color: white;
+ }
 
+ #results-header {
+    color:white;
+    text-align: center;
  }

@@ -3,7 +3,7 @@ const mustacheExpress = require('mustache-express')
 const app = express()
 const neo4j = require('neo4j-driver').v1;
 const user = "neo4j"
-const password = "123"
+const password = "bsfdc19"
 const uri = "bolt://localhost:7687"
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
 const session = driver.session();
@@ -22,7 +22,7 @@ app.engine('mustache',mustacheExpress())
 app.set('views', VIEWS_PATH)
 app.set('view engine','mustache')
 
-app.get('/buttons/:buttontype', (req,res)=>{
+app.get('/buttons', (req,res)=>{
     
     res.render('buttons_selection')
 })
@@ -59,46 +59,10 @@ app.get('/buttons/:buttontype/characters',(req,res)=>{
 
 
 app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
-    let buttonTypeParam = req.params.buttontype
-   let controlType = ''
-   let direction = ''
-
-   if((buttonTypeParam).includes('joystick')) {
-       controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
-       direction = buttonTypeParam.substring(buttonTypeParam.indexOf('-')+1,buttonTypeParam.length)
-   } else {
-       controlType = buttonTypeParam
-   }
-
-   let characterName = req.params.charactername
-    
-    let resultPromise = session.run(
-        "MATCH (c:Character) WHERE c.name = $character RETURN c",
-        {character: characterName}
-      )
-      
-    resultPromise.then(result => {
-        session.close();
-      
-        const singleRecord = result.records[0];
-        const node = singleRecord.get(0);
-      
-        let resultsObj = node.properties.name;
-        console.log(resultsObj)
-        
-        // on application exit:
-        driver.close();
-
-        res.render('results', {character: characterName})
-
-}).catch(error=>console.log(error))
-})
-
-
-app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
 let buttonTypeParam = req.params.buttontype
    let controlType = ''
    let direction = ''
+   let position
    let action = ''
    if((buttonTypeParam).includes('joystick')) {
        controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
@@ -121,7 +85,8 @@ let buttonTypeParam = req.params.buttontype
             action='defensive crouch'
        }
    } else {
-       controlType = buttonTypeParam
+       controlType = 'button' 
+       position = buttonTypeParam
    }
    let characterName = req.params.charactername
    if(controlType == 'joystick') {
@@ -144,9 +109,29 @@ let buttonTypeParam = req.params.buttontype
                 actions.push(combo)
             })
         }
+        
         driver.close();
         res.render('results', {actions: actions})
  }).catch(error=>console.log(error))
+    } else {
+        let resultPromise = session.run(
+            "MATCH (c:Control)-[*1..2]->(a:Action), (p:Character)-->(a) WHERE c.position=$position AND p.name=$name RETURN a",
+            {name: characterName, position: parseInt(position)}
+           )
+         resultPromise.then(result => {
+             session.close();
+             console.log(result)
+             let actions = []
+             const records = result.records;
+                records.forEach(record => {
+                    const node = record.get(0)
+                    const action = node.properties.name
+                    actions.push(action)
+                })
+             
+             driver.close();
+             res.render('results', {actions: actions})
+      }).catch(error=>console.log(error))
     }
  })
 
