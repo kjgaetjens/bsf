@@ -8,7 +8,7 @@ const uri = "bolt://localhost:7687"
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
 const session = driver.session();
 const path = require('path')
-
+const PORT = process.env.PORT || 8080
 
 const VIEWS_PATH = path.join(__dirname, 'views')
 
@@ -117,6 +117,6 @@ let buttonTypeParam = req.params.buttontype
     }
  })
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log('server has started')
 })
