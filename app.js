@@ -3,7 +3,7 @@ const mustacheExpress = require('mustache-express')
 const app = express()
 const neo4j = require('neo4j-driver').v1;
 const user = "neo4j"
-const password = "123"
+const password = "bsfdc19"
 const uri = "bolt://localhost:7687"
 const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
 const session = driver.session();
@@ -67,23 +67,6 @@ let buttonTypeParam = req.params.buttontype
    if((buttonTypeParam).includes('joystick')) {
        controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
        direction = buttonTypeParam.substring(buttonTypeParam.indexOf('-')+1,buttonTypeParam.length)
-       if (direction == 'up') {
-            action='jump'
-       } else if (direction == 'down') {
-            action='crouch'
-       } else if (direction =='down-right') {
-            action='offensive crouch'
-       } else if (direction =='right') {
-            action='forward'
-       } else if (direction =='up-right') {
-            action='forward jump'
-       } else if (direction =='up-left') {
-            action='back flip'
-       } else if (direction == 'left') {
-            action='back defense'
-       } else if (direction == 'down-left') {
-            action='defensive crouch'
-       }
    } else {
        controlType = 'button' 
        position = buttonTypeParam
@@ -91,8 +74,8 @@ let buttonTypeParam = req.params.buttontype
    let characterName = req.params.charactername
    if(controlType == 'joystick') {
     let resultPromise = session.run(
-       "MATCH (a:Action)-->(c:Combo), (p:Character)-->(a) WHERE p.name=$name AND a.name=$action RETURN a, c",
-       {name: characterName, action:action}
+       "MATCH (c:Joystick)-[rel:MOVE]->(a:Action), (p:Character)-->(a) WHERE p.name=$name AND rel.direction=$direction OPTIONAL MATCH (a)-->(d:Combo) RETURN a, d",
+       {name: characterName, direction:direction}
       )
     resultPromise.then(result => {
         session.close();
