@@ -2,6 +2,23 @@ body{
     background-color: black;
     padding: 50px;
 }
+/* h1{
+    font-family: 'Permanent Marker', cursive;
+    transform: skew(-10deg) rotate(-10deg) translateX(-2rem);
+    color:white;
+    background: -webkit-linear-gradient(rgb(255, 18, 18) 30%, rgb(255, 215, 38));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size:3em;
+} */
+
+h1,h2{
+    font-family: 'Roboto Mono', monospace;
+    background: linear-gradient(rgb(255, 18, 18) 30%, rgb(255, 215, 38));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align:center;
+}
 .container{
     display:flex;
     justify-content: space-around;
@@ -19,6 +36,12 @@ body{
 
 #joystick-container a {
     text-decoration: none;
+    color:black;
+}
+
+#joystick-container a:visited {
+    text-decoration: none;
+    color:black;
 }
 
 #top, #center, #bottom{
@@ -43,6 +66,18 @@ body{
     height:150px;
     border-radius:50%;
     background-color:black;
+    background-image: radial-gradient(circle, #616161, #3a3a3a,black, black, black);
+    box-shadow: 4px 4px 10px 5px #00000038;
+
+}
+#top a:hover{
+    color:white;
+}
+#center a:hover{
+    color:white;
+}
+#bottom a:hover{
+    color:white;
 }
 
 #upright-joystick{
@@ -88,7 +123,7 @@ body{
     
 }
 
-.red-btn::after{
+.red-btn::before{
     content: '';
     display:flex;
     background-color: red;
@@ -98,6 +133,11 @@ body{
     width: 80px;
     height: 80px;
     border-radius: 100%;
+}
+.red-btn:active{
+    content:'';
+    box-shadow: 2px 2px #931515;
+    border: 1px solid #931515;
 }
 
 
@@ -145,7 +185,7 @@ body{
  h3{
      color:white;
      text-align:center;
-     font-family:arial;
+     font-family: 'Roboto Mono', monospace;
      font-size:1em;
  }
 
@@ -172,7 +212,7 @@ body{
 .character > img{
     margin-bottom:10px;
 }
-a:hover{
+.character a:hover{
     transform:scale(1.1);
     transition: .7s ease-out;
 }
