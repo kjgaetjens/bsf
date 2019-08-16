@@ -120,7 +120,6 @@ let buttonTypeParam = req.params.buttontype
            )
          resultPromise.then(result => {
              session.close();
-             console.log(result)
              let actions = []
              const records = result.records;
                 records.forEach(record => {
