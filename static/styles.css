@@ -27,6 +27,7 @@ h1,h2{
     padding: 30px;
     clip-path: polygon(0 1%, 100% 1%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
     background-color: gray;
+    box-shadow: 5px 7px rgb(31, 31, 31);
 }
 /*******JOYSTICK*******/
 #joystick-container{
