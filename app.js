@@ -1,6 +1,7 @@
 const express = require('express')
 const mustacheExpress = require('mustache-express')
 const app = express()
+const path = require('path')
 const neo4j = require('neo4j-driver').v1;
 const user = "neo4j"
 const password = "bsfdc19"
@@ -19,12 +20,19 @@ app.use(express.static('static'))
 
 app.use(express.urlencoded())
 
+const VIEWS_PATH = path.join(__dirname, 'views')
+
+// tell express to use mustache templating engine
 app.engine('mustache',mustacheExpress())
-app.set('views', './views')
+app.set('views',VIEWS_PATH)
 app.set('view engine','mustache')
 
-app.get('/buttons/:buttontype', (req,res)=>{
-    
+
+app.get('/buttons', (req,res)=>{
+    res.render('buttons_selection')
+})
+
+app.get('/buttons/:buttontype/characters', (req, res) => {
     res.render('character_selection')
 })
 
@@ -58,7 +66,19 @@ app.get('buttons/:buttontype/characters/:charactername', (req,res)=>{
 
 
 app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
-    res.render('results')
+    let buttonTypeParam = req.params.buttontype
+    let controlType = ''
+    let direction = ''
+    if((buttonTypeParam).includes('joystick')) {
+        controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
+        direction = buttonTypeParam.substring(buttonTypeParam.indexOf('-')+1,buttonTypeParam.length)
+    } else {
+        controlType = buttonTypeParam
+    }
+    let characterName = req.params.charactername
+
+    //write code to return info from neo4j
+
 })
 
 app.listen(3000, ()=>{
