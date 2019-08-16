@@ -4,9 +4,11 @@
     </head>
 
     <body>
-    
+        <h1 id="results-header">Moves You Can No Longer Use :'(</h1>
         <div id="results-container">
-            <h3>{{character}}</h3>
+            {{#actions}}
+                <h3>{{.}}</h3>
+            {{/actions}}
         </div>
     
     </body>
