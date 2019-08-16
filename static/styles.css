@@ -164,7 +164,7 @@ body{
 .character > img{
     margin-bottom:10px;
 }
-button:hover{
+a:hover{
     transform:scale(1.1);
     transition: .7s ease-out;
 }
@@ -180,7 +180,13 @@ button:hover{
     align-items: center;
     outline: none;
     padding: 10px;
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: black;
     border: none;
+ }
+
+ /**RESULTS**/
+
+ #results-container{
+     display:flex;
  }

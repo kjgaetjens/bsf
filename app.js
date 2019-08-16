@@ -60,8 +60,16 @@ app.get('/buttons/:buttontype/characters',(req,res)=>{
 
 
 app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
-    let characterName = req.params.charactername
-    let buttonType = req.params.buttontype
+    let buttonTypeParam = req.params.buttontype
+   let controlType = ''
+   let direction = ''
+   if((buttonTypeParam).includes('joystick')) {
+       controlType = buttonTypeParam.substring(0,buttonTypeParam.indexOf('-'))
+       direction = buttonTypeParam.substring(buttonTypeParam.indexOf('-')+1,buttonTypeParam.length)
+   } else {
+       controlType = buttonTypeParam
+   }
+   let characterName = req.params.charactername
     
     let resultPromise = session.run(
         "MATCH (c:Character) WHERE c.name = $character RETURN c",
