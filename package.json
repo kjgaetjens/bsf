@@ -1,7 +1,6 @@
 {
   "name": "useless_app",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,5 +11,14 @@
     "express": "^4.17.1",
     "mustache-express": "^1.2.8",
     "neo4j-driver": "^1.7.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elizabethsv/broken-street-fighter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/elizabethsv/broken-street-fighter/issues"
+  },
+  "homepage": "https://github.com/elizabethsv/broken-street-fighter#readme",
+  "description": ""
 }

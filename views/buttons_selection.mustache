@@ -7,53 +7,95 @@
     <body>
 
         <div class="container">
-            
             <div id="joystick-container">
                 <div id="top">
-                    <div id="NW-Arrow" class="arrow">&#8598;</div>
-                    <div id="UP-Arrow" class="arrow">&#8593;</div>
-                    <div id="NE-Arrow" class="arrow">&#8598</div>
+                    <form action="/buttons" method="POST">
+                        <button>
+                        <div id="upleft-joystick" class="arrow">&#8598;</div>
+                        <input type="hidden" value="up-left" name="control">
+                        </button>
+                    </form>
+                    <form action="/buttons" method="POST">
+                        <div id="up-joystick" class="arrow">&#8593;</div>
+                        <input type="hidden" value="up" name="control">
+                    </form>
+                    <form action="/buttons" method="POST">
+                        <div id="upright-joystick" class="arrow">&#8598</div>
+                        <input type="hidden" value="upright" name="control">
+                    </form>
                 </div>
                 <div id="center">
-                    <div id="L-Arrow" class="arrow">&#8592</div>
-                    <div id="joystick"></div>
-                    <div id="R-Arrow" class="arrow">&#8594</div>
+                    <form action="/buttons" method="POST">
+                        <div id="left-joystick" class="arrow">&#8592</div>
+                        <input type="hidden" value="left" name="control">
+                    </form>
+                        <div id="joystick"></div>
+                    <form action="/buttons" method="POST">
+                        <div id="right-joystick" class="arrow">&#8594</div>
+                        <input type="hidden" value="right" name="control">
+                    </form>
                 </div>
                 <div id="bottom">
-                    <div id="SW-Arrow" class="arrow">&#8600</div>
-                    <div id="BOT-Arrow" class="arrow">&#8595</div>
-                    <div id="SE-Arrow" class="arrow">&#8600</div>
+                    <form action="/buttons" method="POST">
+                        <div id="downleft-joystick" class="arrow">&#8600</div>
+                        <input type="hidden" value="downleft" name="control">
+                    </form>
+                    <form action="/buttons" method="POST">
+                        <div id="down-joystick" class="arrow">&#8595</div>
+                        <input type="hidden" value="down" name="control">
+                    <form action="/buttons" method="POST">
+                        <div id="downright-joystick" class="arrow">&#8600</div>
+                        <input type="hidden" value="downright" name="control">
+                    </form>
                 </div>
             </div>
 
             <div class="btn-container">
             <div class="button-label">
-                    <div class="btn">
+                    <div id="one-btn" class="btn">
                         <h3>Jab</h3>
-                        <div class="red-btn top-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="red-btn top-btns"></div>
+                            <input type="hidden" value="1" name="control">
+                        </form>
                     </div>
-                    <div class="btn">
+                    <div id="two-btn" class="btn">
                         <h3>Strong</h3>
-                        <div class="white-btn top-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="white-btn top-btns"></div>
+                            <input type="hidden" value="2" name="control">
+                        </form
                     </div>
-                    <div class="btn">
+                    <div id="three-btn" class="btn">
                         <h3>Fierce</h3>
-                        <div class="blue-btn top-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="blue-btn top-btns"></div>
+                            <input type="hidden" value="3" name="control">
+                        </form>
                     </div>
                 </div>
 
                 <div class="button-label">
-                    <div class="btn">
+                    <div id="four-btn" class="btn">
                         <h3>Short</h3>
-                        <div class="red-btn bottom-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="red-btn bottom-btns"></div>
+                            <input type="hidden" value="4" name="control">
+                        </form>
                     </div>
-                    <div class="btn">
+                    <div id="five-btn" class="btn">
                         <h3>Forward</h3>
-                        <div class="white-btn bottom-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="white-btn bottom-btns"></div>
+                            <input type="hidden" value="5" name="control">
+                        </form>
                     </div>
-                    <div class="btn">
+                    <div id="six-btn" class="btn">
                         <h3>Roundhouse</h3>
-                        <div class="blue-btn bottom-btns"></div>
+                        <form action="/buttons" method="POST">
+                            <div class="blue-btn bottom-btns"></div>
+                            <input type="hidden" value="6" name="control">
+                        </form>
                     </div>
                 </div>
             </div>
