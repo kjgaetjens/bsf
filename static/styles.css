@@ -16,6 +16,11 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+#joystick-container a {
+    text-decoration: none;
+}
+
 #top, #center, #bottom{
     display:flex;
     font-size:2em;
@@ -31,6 +36,7 @@ body{
 .arrow{
     font-size:2em;
     font-weight: 800;
+
 }
 #joystick{
     width: 150px;
@@ -39,13 +45,13 @@ body{
     background-color:black;
 }
 
-#upleft-joystick{
+#upright-joystick{
     transform: rotate(90deg) translate(18px,-25px);
 }
 #downleft-joystick{
     transform: rotate(90deg) translate(-18px,25px)
 }
-#upright-joystick{
+#upleft-joystick{
     transform:translate(-25px, 18px)
 }
 
