@@ -2,19 +2,20 @@ const express = require('express')
 const mustacheExpress = require('mustache-express')
 const app = express()
 const neo4j = require('neo4j-driver').v1;
-const user = "neo4j"
-const password = "bsfdc19"
-const uri = "bolt://localhost:7687"
-const driver = neo4j.driver(uri, neo4j.auth.basic(user, password));
-const session = driver.session();
 const path = require('path')
-
-
+const PORT = process.env.PORT || 8080
 const VIEWS_PATH = path.join(__dirname, 'views')
 
+var GRAPHENEDB_BOLT_URL = 'bolt://hobby-jojjbabkhfcigbkejiignldl.dbs.graphenedb.com:24787'
+var GRAPHENEDB_BOLT_USER = 'app143202370-Vrkgp0'
+var GRAPHENEDB_BOLT_PASSWORD = 'b.oN9QCGuyNxvP.A5mjRm5fbDvA62Th'
 
+var graphenedbURL = GRAPHENEDB_BOLT_URL;
+var graphenedbUser = GRAPHENEDB_BOLT_USER;
+var graphenedbPass = GRAPHENEDB_BOLT_PASSWORD;
 
-
+var driver = neo4j.driver(graphenedbURL, neo4j.auth.basic(graphenedbUser, graphenedbPass));
+var session = driver.session();
 
 app.use(express.urlencoded())
 app.use(express.static('static'));
@@ -22,41 +23,15 @@ app.engine('mustache',mustacheExpress())
 app.set('views', VIEWS_PATH)
 app.set('view engine','mustache')
 
+
 app.get('/buttons', (req,res)=>{
     
     res.render('buttons_selection')
 })
 
 app.get('/buttons/:buttontype/characters',(req,res)=>{
-    //     let resultPromise = session.run(
-            
-    //         "MATCH (c:Character) WHERE c.name = $character RETURN c",
-    //         {character: characterName}
-    //       )
-          
-    //     resultPromise.then(result => {
-    //         session.close();
-          
-    //         const singleRecord = result.records[0];
-    //         const node = singleRecord.get(0);
-          
-    //         let resultsObj = node.properties.name;
-    //         console.log(resultsObj)
-    //         // on application exit:
-    //         driver.close();   
-        
-            
-    // })
     res.render('character_selection')
-    
 })
-
-
-// app.get('buttons/:buttontype/characters/:charactername', (req,res)=>{
-//     let characterName = req.params.charactername
-//     res.send('asdfg')
-// })
-
 
 app.get('/buttons/:buttontype/characters/:charactername/results', (req,res)=>{
 let buttonTypeParam = req.params.buttontype
@@ -117,6 +92,6 @@ let buttonTypeParam = req.params.buttontype
     }
  })
 
-app.listen(3000, ()=>{
+app.listen(PORT, ()=>{
     console.log('server has started')
 })
