@@ -23,6 +23,9 @@ app.engine('mustache',mustacheExpress())
 app.set('views', VIEWS_PATH)
 app.set('view engine','mustache')
 
+app.get('/', (req,res)=>{
+    res.redirect('/buttons')
+})
 
 app.get('/buttons', (req,res)=>{
     
