@@ -52,7 +52,10 @@ h1,h2{
 #top, #center, #bottom{
     justify-content:center;
 }
-
+#bottom{
+    position: relative;
+    bottom: 20;
+}
 #center{
     align-items:center;
 }
