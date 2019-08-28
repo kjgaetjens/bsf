@@ -2,7 +2,8 @@ body{
     background-color: black;
     padding: 50px;
 }
-/* h1{
+/* future enhancements
+    h1{
     font-family: 'Permannoent Marker', cursive;
     transform: skew(-10deg) rotate(-10deg) translateX(-2rem);
     color:white;
@@ -266,14 +267,32 @@ h1,h2{
  }
 
  /**RESULTS**/
+ #results-header {
+    color:white;
+    text-align: center;
+ }
 
- #results-container{
+ #results-container {
      display:flex;
      flex-direction: column;
      color: white;
  }
 
- #results-header {
-    color:white;
-    text-align: center;
+ #home-btn-div {
+     display: flex;
+     justify-content: center;
+     margin-top: 25px;
  }
+
+ #home-btn-div a {
+     text-decoration: none;
+ }
+
+ #home-btn-div button {
+    border-radius: 5px;
+    background: linear-gradient(rgb(255, 18, 18) 30%, rgb(255, 215, 38));
+    width: 180px;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
