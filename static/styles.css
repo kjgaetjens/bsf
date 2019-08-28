@@ -3,7 +3,7 @@ body{
     padding: 50px;
 }
 /* h1{
-    font-family: 'Permanent Marker', cursive;
+    font-family: 'Permannoent Marker', cursive;
     transform: skew(-10deg) rotate(-10deg) translateX(-2rem);
     color:white;
     background: -webkit-linear-gradient(rgb(255, 18, 18) 30%, rgb(255, 215, 38));
@@ -27,6 +27,7 @@ h1,h2{
     padding: 30px;
     clip-path: polygon(0 1%, 100% 1%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
     background-color: gray;
+    box-shadow: 5px 7px rgb(31, 31, 31);
 }
 /*******JOYSTICK*******/
 #joystick-container{
@@ -36,12 +37,12 @@ h1,h2{
 
 #joystick-container a {
     text-decoration: none;
-    color:black;
+    color:white;
 }
 
 #joystick-container a:visited {
     text-decoration: none;
-    color:black;
+    color:white;
 }
 
 #top, #center, #bottom{
@@ -51,7 +52,10 @@ h1,h2{
 #top, #center, #bottom{
     justify-content:center;
 }
-
+#bottom{
+    position: relative;
+    bottom: 20;
+}
 #center{
     align-items:center;
 }
@@ -59,7 +63,6 @@ h1,h2{
 .arrow{
     font-size:2em;
     font-weight: 800;
-
 }
 #joystick{
     width: 150px;
@@ -68,7 +71,18 @@ h1,h2{
     background-color:black;
     background-image: radial-gradient(circle, #616161, #3a3a3a,black, black, black);
     box-shadow: 4px 4px 10px 5px #00000038;
+    position: relative;
+    top: -30;
+    z-index:2;
+}
 
+#joystick-base{
+    width: 250px;
+    height:250px;
+    background-color: #111;
+    position:absolute;
+    z-index:-1;
+    border-radius: 100%;
 }
 #top a:hover{
     color:white;
@@ -87,7 +101,7 @@ h1,h2{
     transform: rotate(90deg) translate(-18px,25px)
 }
 #upleft-joystick{
-    transform:translate(-25px, 18px)
+    transform:translate(-25px, 18px);
 }
 
 #downright-joystick{
@@ -119,16 +133,19 @@ h1,h2{
     border-radius: 100%;
     width: 100px;
     height:100px;
-    box-shadow: 4px 2px #d02222;
+    box-shadow: 0px 3px 0 3px #881515, 7px 4px 10px 6px rgba(0, 0, 0, 0.246);
+    background: linear-gradient(-48deg, rgb(249, 35, 0) 0%, rgba(103,7,7,1) 100%);
     
 }
+
 
 .red-btn::before{
     content: '';
     display:flex;
     background-color: red;
-    box-shadow: 5px 5px #d02222;
-    border: 1px solid #d02222;
+    background: linear-gradient(-48deg, rgb(249, 35, 0) 0%, rgba(103,7,7,1) 100%);
+    box-shadow: 0px 9px 15px 2px #8e1212, 0px 7px 0 3px #800c0c;
+
     margin: 0 auto;
     width: 80px;
     height: 80px;
@@ -145,17 +162,24 @@ h1,h2{
     background-color:blue;
     border-radius: 100%;
     width: 100px;
-    height:100px;
-    box-shadow: 4px 2px #0e0eb3;
+    height: 100px;
+    box-shadow: 0px 3px 0 3px #091661, 7px 4px 10px 6px rgba(0, 0, 0, 0.246);
+    background: linear-gradient(-48deg, rgb(24, 52, 207) 0%, rgb(12, 30, 134) 100%);
     
 }
+.blue-btn:active{
+    content:'';
+    box-shadow: 2px 2px #050e3f;
+    border: 1px solid #091661;
+}
 
-.blue-btn::after{
+
+.blue-btn::before{
     content: '';
     display:flex;
     background-color: blue;
-    box-shadow: 5px 5px #0e0eb3;
-    border: 1px solid #0e0eb3;
+    background: linear-gradient(-48deg,  rgb(24, 52, 207) 0%, rgb(9, 20, 82) 100%);
+    box-shadow: 0px 9px 15px 2px #091661, 0px 7px 0 3px #091661;
     margin: 0 auto;
     width: 80px;
     height: 80px;
@@ -168,15 +192,23 @@ h1,h2{
     border-radius: 100%;
     width: 100px;
     height:100px;
-    box-shadow: 4px 2px #999
+    box-shadow: 0px 3px 0 3px #444, 7px 4px 10px 6px rgba(0, 0, 0, 0.246);
+    background: linear-gradient(-48deg, rgb(216, 216, 216) 0%, rgb(101, 101, 101) 100%);
 }
 
-.white-btn::after{
+.white-btn:active{
+    content:'';
+    box-shadow: 2px 2px rgb(49, 49, 49);
+    border: 1px solid rgb(53, 52, 52);
+    
+}
+
+.white-btn::before{
     content: '';
     display:flex;
     background-color: white;
-    box-shadow: 5px 5px #999;
-    border: 1px solid #999;
+    background: linear-gradient(-48deg,  rgb(247, 247, 247) 0%, rgb(169, 169, 169) 100%);
+    box-shadow: 0px 9px 15px 2px #999, 0px 7px 0 3px #444;
     margin: 0 auto;
     width: 80px;
     height: 80px;
